@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PlantController } from './plant/controller/plant.controller';
+import { PlantService } from './plant/service/plant.service';
 import {
   PLANTS_CLIENT_ID,
   PLANTS_CONSUMER_GROUP_ID,
@@ -26,7 +26,7 @@ import {
       },
     ]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [PlantController],
+  providers: [PlantService],
 })
 export class AppModule {}
