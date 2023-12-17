@@ -22,6 +22,7 @@ import {
           consumer: {
             groupId: PLANTS_CONSUMER_GROUP_ID,
           },
+          producerOnlyMode: true,
         },
       },
     ]),
