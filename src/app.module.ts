@@ -22,7 +22,7 @@ import {
         options: {
           client: {
             clientId: PLANTS_CLIENT_ID,
-            brokers: ['localhost:9092'],
+            brokers: ['kafka:29092'],
           },
           consumer: {
             groupId: PLANTS_CONSUMER_GROUP_ID,
@@ -38,7 +38,7 @@ import {
         options: {
           client: {
             clientId: SENSORS_CLIENT_ID,
-            brokers: ['localhost:9092'],
+            brokers: ['kafka:29092'],
           },
           consumer: {
             groupId: SENSORS_CONSUMER_GROUP_ID,
