@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
 import { PlantService } from '../service/plant.service';
-import { CreatePlantRequest } from '../dto/create-plant.dto';
+import { CreatePlantDto } from '../dto/create-plant.dto';
 
 @Controller('plant')
 export class PlantController {
@@ -12,7 +12,7 @@ export class PlantController {
   }
 
   @Post()
-  createPlant(@Body(new ValidationPipe()) createPlantDto: CreatePlantRequest) {
+  createPlant(@Body(new ValidationPipe()) createPlantDto: CreatePlantDto) {
     this.plantService.createPlant(createPlantDto);
   }
 }

@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsDate, IsString } from 'class-validator';
 
-export class CreatePlantRequest {
+export class CreatePlantDto {
   @IsString()
   plantName: string;
   @IsString()
