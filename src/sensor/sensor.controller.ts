@@ -10,6 +10,7 @@ import {
 import { SensorService } from './sensor.service';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { UpdateSensorDto } from './dto/update-sensor.dto';
+import { SensorDataDto } from './dto/sensor-data.dto';
 
 /**
  * SensorController handles HTTP requests related to sensors.
@@ -77,5 +78,10 @@ export class SensorController {
   @Delete(':plantId')
   removeAllPlantSensors(@Param('plantId') id: string) {
     this.sensorService.removePlantSensors(id);
+  }
+
+  @Post('sensorData')
+  saveSensorData(@Body() dataEntry: SensorDataDto) {
+    this.sensorService.saveSensorEntry(dataEntry);
   }
 }

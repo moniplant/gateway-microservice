@@ -11,6 +11,8 @@ import {
   SENSORS_DATA_SERVICE,
   SENSORS_SERVICE,
 } from './tokens';
+import { SensorController } from './sensor/sensor.controller';
+import { SensorService } from './sensor/sensor.service';
 
 @Module({
   imports: [
@@ -52,12 +54,12 @@ import {
         name: SENSORS_DATA_SERVICE,
         transport: Transport.MQTT,
         options: {
-          url: 'mqtt://localhost:1883',
+          url: 'mqtt://mosquitto:1883',
         },
       },
     ]),
   ],
-  controllers: [PlantController],
-  providers: [PlantService],
+  controllers: [PlantController, SensorController],
+  providers: [PlantService, SensorService],
 })
 export class AppModule {}

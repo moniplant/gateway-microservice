@@ -1,4 +1,4 @@
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { UpdateSensorDto } from './dto/update-sensor.dto';
 import { SENSORS_DATA_SERVICE, SENSORS_SERVICE } from 'src/tokens';
@@ -9,11 +9,13 @@ import {
   DELETE_SENSOR,
   LIST_PLANT_SENSORS,
   RETRIEVE_SENSOR,
+  SAVE_SENSOR_DATA,
   UPDATE_SENSOR,
 } from 'src/events';
 import { CreateSensorEvent } from './events/create-sensor.event';
 import { firstValueFrom } from 'rxjs';
 import { UpdateSensorEvent } from './events/update-sensor.event';
+import { SensorDataDto } from './dto/sensor-data.dto';
 
 /**
  * SensorService is responsible for handling sensor-related operations.
@@ -99,5 +101,10 @@ export class SensorService implements OnModuleInit {
    */
   removePlantSensors(plantId: string) {
     this.sensorClient.emit(DELETE_PLANT_SENSORS, { id: plantId });
+  }
+
+  saveSensorEntry(entry: SensorDataDto) {
+    Logger.log('Send  via MQTT ', entry);
+    this.sensorDataClient.emit(SAVE_SENSOR_DATA, entry);
   }
 }
