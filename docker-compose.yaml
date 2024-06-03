@@ -44,6 +44,16 @@ services:
       ZOOKEEPER_AUTOPURGE_PURGE_INTERVAL: "0"
     networks:
       - localnet
+  mqtt5:
+    image: eclipse-mosquitto
+    container_name: mqtt5
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    restart: "no"
+    networks:
+      - localnet
+  
 networks:
   localnet:
     driver: bridge
