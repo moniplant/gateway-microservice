@@ -54,7 +54,7 @@ import { SensorService } from './sensor/sensor.service';
         name: SENSORS_DATA_SERVICE,
         transport: Transport.MQTT,
         options: {
-          url: 'mqtt://mosquitto:1883',
+          url: 'mqtt://mqtt:1883',
         },
       },
     ]),

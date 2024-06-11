@@ -45,13 +45,14 @@ services:
     networks:
       - localnet
   mosquitto:
-    image: eclipse-mosquitto
-    hostname: mosquitto
-    container_name: mosquitto
-    restart: unless-stopped
+    image: eclipse-mosquitto:latest
+    container_name: mqtt
+    restart: always
+    volumes:
+      - "./mosquitto.conf:/mosquitto/config/mosquitto.conf"
     ports:
-      - "1883:1883"
-      - "9001:9001"
+      - 1883:1883
+      - 9001:9001
     networks:
       - localnet
 networks:
