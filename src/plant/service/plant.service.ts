@@ -2,7 +2,7 @@ import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import { PLANTS_SERVICE } from '../../tokens';
 import { CreatePlantDto } from '../dto/create-plant.dto';
-import { CREATE_PLANT, LIST_PLANTS } from 'src/events';
+import { CREATE_PLANT, LIST_PLANTS, LIST_PLANT_TYPES } from 'src/events';
 import { CreatePlantEvent } from '../events/create-plant.event';
 import { firstValueFrom } from 'rxjs';
 
@@ -14,13 +14,18 @@ export class PlantService implements OnModuleInit {
 
   onModuleInit() {
     this.plantClient.subscribeToResponseOf(LIST_PLANTS);
+    this.plantClient.subscribeToResponseOf(LIST_PLANT_TYPES);
   }
 
   async listPlants() {
     return firstValueFrom(this.plantClient.send(LIST_PLANTS, ''));
   }
 
-  async createPlant({
+  async listPlantTypes() {
+    return firstValueFrom(this.plantClient.send(LIST_PLANT_TYPES, ''));
+  }
+
+  createPlant({
     plantName,
     plantDescription,
     plantLocation,

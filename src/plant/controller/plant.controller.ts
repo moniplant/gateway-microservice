@@ -11,6 +11,11 @@ export class PlantController {
     return this.plantService.listPlants();
   }
 
+  @Get('/plant_types')
+  listPlantTypes() {
+    return this.plantService.listPlantTypes();
+  }
+
   @Post()
   createPlant(@Body(new ValidationPipe()) createPlantDto: CreatePlantDto) {
     this.plantService.createPlant(createPlantDto);

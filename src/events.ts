@@ -5,6 +5,10 @@ export const DELETE_PLANT = 'plant.delete';
 export const UPDATE_PLANT = 'plant.update';
 export const RETRIEVE_PLANT = 'plant.retrieve';
 
+//  PLANT API - Kafka: Events for plant_types table
+export const CREATE_PLANT_TYPE = 'plant.type.create';
+export const LIST_PLANT_TYPES = 'plant.type.list';
+
 // SENSOR API - Kafka
 export const CREATE_SENSOR = 'sensor.create';
 export const DELETE_SENSOR = 'sensor.delete';
