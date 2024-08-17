@@ -1,4 +1,4 @@
-export class UpdateSensorEvent {
+export class CreateorUpdateSensorEvent {
   constructor(
     public id: string,
     public label: string,

@@ -1,8 +1,10 @@
 import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
 import { PlantService } from '../service/plant.service';
 import { CreatePlantDto } from '../dto/create-plant.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('plant')
+@ApiTags('Plant')
 export class PlantController {
   constructor(private readonly plantService: PlantService) {}
 

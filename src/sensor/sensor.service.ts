@@ -12,10 +12,9 @@ import {
   SAVE_SENSOR_DATA,
   UPDATE_SENSOR,
 } from 'src/events';
-import { CreateSensorEvent } from './events/create-sensor.event';
 import { firstValueFrom } from 'rxjs';
-import { UpdateSensorEvent } from './events/update-sensor.event';
 import { SensorDataDto } from './dto/sensor-data.dto';
+import { CreateorUpdateSensorEvent } from './events/create-update-sensor.event';
 
 /**
  * SensorService is responsible for handling sensor-related operations.
@@ -46,10 +45,10 @@ export class SensorService implements OnModuleInit {
    * Creates a new sensor.
    * @param createSensorDto - Data Transfer Object containing sensor creation details.
    */
-  create({ label, plant, type }: CreateSensorDto) {
+  create({ sensor_id, label, plant_id, type }: CreateSensorDto) {
     this.sensorClient.emit(
       CREATE_SENSOR,
-      new CreateSensorEvent(label, plant, type),
+      new CreateorUpdateSensorEvent(sensor_id, label, plant_id, type),
     );
   }
 
@@ -77,13 +76,13 @@ export class SensorService implements OnModuleInit {
 
   /**
    * Updates an existing sensor.
-   * @param id - The ID of the sensor to be updated.
+   * @param sensor_id - The ID of the sensor to be updated.
    * @param updateSensorDto - Data Transfer Object containing the updated sensor details.
    */
-  update(id: string, { label, plant, type }: UpdateSensorDto) {
+  update(sensor_id: string, { label, plant_id, type }: UpdateSensorDto) {
     this.sensorClient.emit(
       UPDATE_SENSOR,
-      new UpdateSensorEvent(id, label, plant, type),
+      new CreateorUpdateSensorEvent(sensor_id, label, plant_id, type),
     );
   }
 

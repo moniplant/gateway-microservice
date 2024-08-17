@@ -11,11 +11,13 @@ import { SensorService } from './sensor.service';
 import { CreateSensorDto } from './dto/create-sensor.dto';
 import { UpdateSensorDto } from './dto/update-sensor.dto';
 import { SensorDataDto } from './dto/sensor-data.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 /**
  * SensorController handles HTTP requests related to sensors.
  */
 @Controller('sensor')
+@ApiTags('Sensor')
 export class SensorController {
   /**
    * Constructor for SensorController.
