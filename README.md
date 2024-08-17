@@ -1,5 +1,8 @@
 # Steps:
 
+#### Lauching Docker service
+`services docker start`
+
 ### Classic way
 
  - To run the gateway service, it is crucial that the Kafka broker is connected, run `docker compose up` on the path to kafdrop `kafdrop\docker-compose\kafka-kafdrop`.
