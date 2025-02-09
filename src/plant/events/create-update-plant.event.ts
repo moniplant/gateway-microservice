@@ -1,5 +1,6 @@
-export class CreatePlantEvent {
+export class CreateorUpdatePlantEvent {
   constructor(
+    public id: string,
     public name: string,
     public description: string,
     public location: string,
@@ -8,6 +9,7 @@ export class CreatePlantEvent {
 
   toString() {
     return JSON.stringify({
+      id: this.id,
       name: this.name,
       location: this.location,
       description: this.description,

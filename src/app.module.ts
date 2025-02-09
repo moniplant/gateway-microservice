@@ -11,8 +11,8 @@ import {
   SENSORS_DATA_SERVICE,
   SENSORS_SERVICE,
 } from './tokens';
-import { SensorController } from './sensor/sensor.controller';
-import { SensorService } from './sensor/sensor.service';
+import { SensorController } from './sensor/controller/sensor.controller';
+import { SensorService } from './sensor/service/sensor.service';
 
 @Module({
   imports: [

@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { CreateSensorDto } from './dto/create-sensor.dto';
-import { UpdateSensorDto } from './dto/update-sensor.dto';
+import { CreateSensorDto } from '../dto/create-sensor.dto';
+import { UpdateSensorDto } from '../dto/update-sensor.dto';
 import { SENSORS_DATA_SERVICE, SENSORS_SERVICE } from 'src/tokens';
 import { ClientKafka, ClientMqtt } from '@nestjs/microservices';
 import {
@@ -13,8 +13,8 @@ import {
   UPDATE_SENSOR,
 } from 'src/events';
 import { firstValueFrom } from 'rxjs';
-import { SensorDataDto } from './dto/sensor-data.dto';
-import { CreateorUpdateSensorEvent } from './events/create-update-sensor.event';
+import { SensorDataDto } from '../dto/sensor-data.dto';
+import { CreateorUpdateSensorEvent } from '../events/create-update-sensor.event';
 
 /**
  * SensorService is responsible for handling sensor-related operations.

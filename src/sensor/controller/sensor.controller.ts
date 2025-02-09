@@ -7,10 +7,10 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { SensorService } from './sensor.service';
-import { CreateSensorDto } from './dto/create-sensor.dto';
-import { UpdateSensorDto } from './dto/update-sensor.dto';
-import { SensorDataDto } from './dto/sensor-data.dto';
+import { SensorService } from '../service/sensor.service';
+import { CreateSensorDto } from '../dto/create-sensor.dto';
+import { UpdateSensorDto } from '../dto/update-sensor.dto';
+import { SensorDataDto } from '../dto/sensor-data.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 /**
@@ -82,6 +82,10 @@ export class SensorController {
     this.sensorService.removePlantSensors(id);
   }
 
+  /**
+   * Delegates the saving of sensor data to the sensor service. And then to the Sensor microservice.
+   * @param dataEntry - Data Transfer Object containing the sensor data to be saved.
+   */
   @Post('sensorData')
   saveSensorData(@Body() dataEntry: SensorDataDto) {
     this.sensorService.saveSensorEntry(dataEntry);
