@@ -105,7 +105,7 @@ export class SensorController {
   @Post('sensorData')
   @ApiOperation({
     summary:
-      'Delegates the saving of sensor data to the sensor service. And then to the Sensor microservice.',
+      'Delegates the saving of sensor data to the Sensor microservice. It uses MQTT Protocol for that.',
   })
   saveSensorData(@Body() dataEntry: SensorDataDto) {
     this.sensorService.saveSensorEntry(dataEntry);

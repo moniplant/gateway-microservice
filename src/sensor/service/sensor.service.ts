@@ -45,10 +45,10 @@ export class SensorService implements OnModuleInit {
    * Creates a new sensor.
    * @param createSensorDto - Data Transfer Object containing sensor creation details.
    */
-  create({ sensor_id, label, plant_id, type }: CreateSensorDto) {
+  create({ sensor_id, label, plant_id, quantity, unit }: CreateSensorDto) {
     this.sensorClient.emit(
       CREATE_SENSOR,
-      new CreateorUpdateSensorEvent(sensor_id, label, plant_id, type),
+      new CreateorUpdateSensorEvent(sensor_id, label, plant_id, quantity, unit),
     );
   }
 
@@ -79,10 +79,13 @@ export class SensorService implements OnModuleInit {
    * @param sensor_id - The ID of the sensor to be updated.
    * @param updateSensorDto - Data Transfer Object containing the updated sensor details.
    */
-  update(sensor_id: string, { label, plant_id, type }: UpdateSensorDto) {
+  update(
+    sensor_id: string,
+    { label, plant_id, quantity, unit }: UpdateSensorDto,
+  ) {
     this.sensorClient.emit(
       UPDATE_SENSOR,
-      new CreateorUpdateSensorEvent(sensor_id, label, plant_id, type),
+      new CreateorUpdateSensorEvent(sensor_id, label, plant_id, quantity, unit),
     );
   }
 

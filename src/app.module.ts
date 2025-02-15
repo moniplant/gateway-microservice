@@ -16,7 +16,7 @@ import { SensorService } from './sensor/service/sensor.service';
 
 @Module({
   imports: [
-    // Microservice #1: CRUD on plants
+    // Microservice #1: CRUD on plants and sensors it sends events to plants-microservice
     ClientsModule.register([
       {
         name: PLANTS_SERVICE,
@@ -32,7 +32,7 @@ import { SensorService } from './sensor/service/sensor.service';
         },
       },
     ]),
-    // Microservice #2: CRUD on sensors
+    // Microservice #2: sends events on sensor deletion or update to sensors-data-microservice to delete or update sensor data.
     ClientsModule.register([
       {
         name: SENSORS_SERVICE,

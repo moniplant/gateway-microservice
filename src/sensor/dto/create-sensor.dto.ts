@@ -28,5 +28,12 @@ export class CreateSensorDto {
     description:
       'The type of physical quantity the sensor is measuring (Temperature, Humidty, Moisture...)',
   })
-  type: string;
+  quantity: string;
+  @IsString()
+  @ApiProperty({
+    type: String,
+    description:
+      'The type of physical unit the sensor is measuring (K, Degree, Fahrenheit...)',
+  })
+  unit: string;
 }
