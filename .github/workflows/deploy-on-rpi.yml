@@ -14,9 +14,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
       with:
-          fetch-depth: 0
-          ref: main
+        ref: main
+        clean: true
+        fetch-depth: 0
     - name: Build the Docker image
       run: docker compose up
