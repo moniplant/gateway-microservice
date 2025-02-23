@@ -26,7 +26,7 @@ services:
     networks:
       - localnet
   kafka:
-    image: obsidiandynamics/kafka
+    image: wurstmeister/kafka:latest
     container_name: kafka
     restart: "no"
     ports:
