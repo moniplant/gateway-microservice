@@ -1,4 +1,4 @@
-name: CI: Builds & Starts the microservice
+name: CI - Builds & Starts the microservice
 
 on:
   push:
