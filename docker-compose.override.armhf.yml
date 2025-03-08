@@ -1,0 +1,6 @@
+services:
+  kafka:
+    image: guiters/kafka-armv7
+  kafdrop:
+    image: null  # No image will be fetched
+
