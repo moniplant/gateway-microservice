@@ -32,6 +32,13 @@ export class CreatePlantDto {
   })
   plant_location: string;
 
+  @IsString()
+  @ApiProperty({
+    type: String,
+    description: 'The type of the plant.',
+  })
+  plant_type: string;
+
   @Type(() => Date)
   @IsDate()
   @ApiProperty({

@@ -36,6 +36,7 @@ export class PlantService implements OnModuleInit {
     plant_name,
     plant_description,
     plant_location,
+    plant_type,
     adoption_date,
   }: CreatePlantDto) {
     this.plantClient.emit(
@@ -45,6 +46,7 @@ export class PlantService implements OnModuleInit {
         plant_name,
         plant_description,
         plant_location,
+        plant_type,
         adoption_date,
       ),
     );
@@ -61,6 +63,7 @@ export class PlantService implements OnModuleInit {
       plant_name,
       plant_description,
       plant_location,
+      plant_type,
       adoption_date,
     }: UpdatePlantDto,
   ) {
@@ -71,6 +74,7 @@ export class PlantService implements OnModuleInit {
         plant_name,
         plant_description,
         plant_location,
+        plant_type,
         adoption_date,
       ),
     );

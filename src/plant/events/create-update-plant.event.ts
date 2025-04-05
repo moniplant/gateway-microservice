@@ -4,6 +4,7 @@ export class CreateorUpdatePlantEvent {
     public name: string,
     public description: string,
     public location: string,
+    public plantTypeAlias: string,
     public adoptionDate: Date,
   ) {}
 
@@ -12,6 +13,7 @@ export class CreateorUpdatePlantEvent {
       id: this.id,
       name: this.name,
       location: this.location,
+      plantTypeAlias: this.plantTypeAlias,
       description: this.description,
       adoptionDate: this.adoptionDate,
     });
