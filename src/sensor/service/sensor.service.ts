@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { CreateSensorDto } from '../dto/create-sensor.dto';
 import { UpdateSensorDto } from '../dto/update-sensor.dto';
 import { SENSORS_DATA_SERVICE, SENSORS_SERVICE } from 'src/tokens';
@@ -106,7 +106,6 @@ export class SensorService implements OnModuleInit {
   }
 
   saveSensorEntry(entry: SensorDataDto) {
-    Logger.log('Send  via MQTT ', entry);
     this.sensorDataClient.emit(SAVE_SENSOR_DATA, entry);
   }
 }

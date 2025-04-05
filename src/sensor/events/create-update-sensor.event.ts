@@ -11,7 +11,7 @@ export class CreateorUpdateSensorEvent {
     return JSON.stringify({
       id: this.id,
       label: this.label,
-      plant: this.plant_id,
+      plant_id: this.plant_id,
       quantity: this.quantity,
       unit: this.unit,
     });

@@ -40,7 +40,7 @@ export class SensorController {
    * @param plantId - The ID of the plant whose sensors are to be retrieved.
    * @returns A promise that resolves to the list of sensors.
    */
-  @Get(':plantId')
+  @Get('/sensors/:plantId')
   @ApiOperation({
     summary: 'Retrieves sensors associated with a specific plant.',
   })
