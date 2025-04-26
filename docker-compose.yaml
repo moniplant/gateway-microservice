@@ -50,7 +50,7 @@ services:
     volumes:
       - "./mosquitto.conf:/mosquitto/config/mosquitto.conf"
     ports:
-      - 1884:1883
+      - 1883:1883
       - 9002:9001
       - 8883:8883
     networks:
