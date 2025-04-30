@@ -4,24 +4,25 @@ services:
       - kafka
   # on the rpi, we totally ignore the monitoring app kafdrop, we dont need it there to debug since its our prod env
   kafdrop: !reset
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2181:2181"
   kafka:
-    image: bitnami/kafka
-    ports: !override
+    image: wurstmeister/kafka:latest
+    container_name: kafka
+    restart: "no"
+    ports:
       - "2181:2181"
       - "9092:9092"
-    environment: !override
-      - KAFKA_CFG_NODE_ID=0  # Unique node ID for the Kafka instance
-      - KAFKA_CFG_PROCESS_ROLES=controller,broker  # Kafka will act as both broker and controller
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,INTERNAL://:29092  # Define all listeners: external, controller, and internal
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092,CONTROLLER://localhost:9093,INTERNAL://kafka:29092  # Advertised listeners
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT  # Security protocol for each listener
-      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL  # Use internal listener for inter-broker communication
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093  # Controller quorum configuration
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER  # Specifies that the controller listens on the CONTROLLER listener
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=  # No Zookeeper in KRaft mode (leave empty)
-      - KAFKA_CFG_LOG_DIRS=/tmp/kafka-logs  # Kafka logs directory
-      - KAFKA_CFG_LOG_RETENTION_HOURS=168  # Optional: Set retention for Kafka logs (default 7 days)
-      - KAFKA_CFG_LOG_SEGMENT_BYTES=1073741824  # Optional: Adjust segment size if needed
-      - KAFKA_CFG_RESTART_ATTEMPTS=10  # Optional: Number of restart attempts
-      - KAFKA_CFG_RESTART_DELAY=5  # Optional: Delay between restart attempts
-      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+    expose:
+      - "29092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:29092,OUTSIDE://localhost:9092
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - localnet
