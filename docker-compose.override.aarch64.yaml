@@ -5,4 +5,4 @@ services:
   # on the rpi, we totally ignore the monitoring app kafdrop, we dont need it there to debug since its our prod env
   kafdrop: !reset
   kafka:
-    image: apache/kafka
+    image: bitnami/kafka
