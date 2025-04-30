@@ -6,3 +6,22 @@ services:
   kafdrop: !reset
   kafka:
     image: bitnami/kafka
+    ports: !override
+      - "2181:2181"
+      - "9092:9092"
+    environment: !override
+       environment:
+        - KAFKA_CFG_NODE_ID=0  # Unique node ID for the Kafka instance
+        - KAFKA_CFG_PROCESS_ROLES=controller,broker  # Kafka will act as both broker and controller
+        - KAFKA_CFG_LISTENERS=INTERNAL://:29092,EXTERNAL://:9092  # Internal and External listeners
+        - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka:29092,EXTERNAL://localhost:9092  # Advertised listeners for clients and brokers
+        - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT  # Security protocol for each listener
+        - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL  # Internal listener for inter-broker communication
+        - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093  # Controller quorum configuration
+        - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER  # Specifies that the controller listens on the CONTROLLER listener
+        - KAFKA_CFG_ZOOKEEPER_CONNECT=  # No Zookeeper in KRaft mode (leave empty)
+        - KAFKA_CFG_LOG_DIRS=/tmp/kafka-logs  # Kafka logs directory
+        - KAFKA_CFG_LOG_RETENTION_HOURS=168  # Optional: Set retention for Kafka logs (default 7 days)
+        - KAFKA_CFG_LOG_SEGMENT_BYTES=1073741824  # Optional: Adjust segment size if needed
+        - KAFKA_CFG_RESTART_ATTEMPTS=10  # Optional: Number of restart attempts
+        - KAFKA_CFG_RESTART_DELAY=5  # Optional: Delay between restart attempts
