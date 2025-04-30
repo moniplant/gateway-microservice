@@ -24,7 +24,7 @@ import { SensorService } from './sensor/service/sensor.service';
         options: {
           client: {
             clientId: PLANTS_CLIENT_ID,
-            brokers: ['kafka:9092'],
+            brokers: ['kafka:29092'],
           },
           consumer: {
             groupId: PLANTS_CONSUMER_GROUP_ID,
@@ -40,7 +40,7 @@ import { SensorService } from './sensor/service/sensor.service';
         options: {
           client: {
             clientId: SENSORS_CLIENT_ID,
-            brokers: ['kafka:9092'],
+            brokers: ['kafka:29092'],
           },
           consumer: {
             groupId: SENSORS_CONSUMER_GROUP_ID,
