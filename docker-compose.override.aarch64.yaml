@@ -1,0 +1,6 @@
+services:
+  gateway_app_prod:
+    depends_on: !override
+      - kafka
+  # on the rpi, we totally ignore the monitoring app kafdrop, we dont need it there to debug since its our prod env
+  kafdrop: !reset
