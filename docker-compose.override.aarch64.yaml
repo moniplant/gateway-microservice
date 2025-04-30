@@ -24,3 +24,4 @@ services:
       - KAFKA_CFG_LOG_SEGMENT_BYTES=1073741824  # Optional: Adjust segment size if needed
       - KAFKA_CFG_RESTART_ATTEMPTS=10  # Optional: Number of restart attempts
       - KAFKA_CFG_RESTART_DELAY=5  # Optional: Delay between restart attempts
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
