@@ -7,10 +7,9 @@ on:
     branches: [ "main" ]
   # To be able to execute the jobs manually
   workflow_dispatch:
+
 jobs:
-
   deploy:
-
     runs-on: self-hosted
 
     steps:
@@ -20,5 +19,19 @@ jobs:
         ref: main
         clean: true
         fetch-depth: 0
-    - name: Build the Docker image
-      run: chmod +x service-runner.sh && ./service-runner.sh
+
+    - name: Stop dependent Docker containers
+      run: |
+        echo "Stopping dependent containers..."
+        docker stop sensors_app_prod plants_app_prod || echo "Containers not running or already stopped."
+
+    - name: Build the Docker image and run the service
+      run: |
+        echo "Running the service..."
+        chmod +x service-runner.sh
+        ./service-runner.sh
+
+    - name: Restart dependent Docker containers
+      run: |
+        echo "Restarting dependent containers..."
+        docker start sensors_app_prod plants_app_prod || echo "Failed to restart one or more containers."

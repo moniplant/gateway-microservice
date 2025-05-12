@@ -117,7 +117,7 @@ export class SensorController {
    * @param sensorId - The ID of the sensor whose data is to be retrieved.
    * @returns A promise that resolves to the latest sensor data.
    */
-  @Get('sensorData/:plantId/:sensorId')
+  @Get('sensordata/:plantId/:sensorId')
   @ApiOperation({
     summary:
       'Retrieves the latest sensor data for a specific plant and sensor.',
