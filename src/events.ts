@@ -19,3 +19,4 @@ export const DELETE_PLANT_SENSORS = 'sensors.plant.delete';
 
 // SENSOR DATA API - MQTT
 export const SAVE_SENSOR_DATA = 'sensor.data.save';
+export const GET_LATEST_SENSOR_DATA = 'sensor.data.latest.get';

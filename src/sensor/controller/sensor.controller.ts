@@ -110,4 +110,22 @@ export class SensorController {
   saveSensorData(@Body() dataEntry: SensorDataDto) {
     this.sensorService.saveSensorEntry(dataEntry);
   }
+
+  /**
+   * Retrieves from the Sensor microservice the latest sensor data for a specific plant and sensor.
+   * @param plantId - The ID of the plant whose sensor data is to be retrieved.
+   * @param sensorId - The ID of the sensor whose data is to be retrieved.
+   * @returns A promise that resolves to the latest sensor data.
+   */
+  @Get('sensorData/:plantId/:sensorId')
+  @ApiOperation({
+    summary:
+      'Retrieves the latest sensor data for a specific plant and sensor.',
+  })
+  getLatestSensorData(
+    @Param('plantId') plantId: string,
+    @Param('sensorId') sensorId: string,
+  ) {
+    return this.sensorService.getLatestSensorData(plantId, sensorId);
+  }
 }

@@ -7,6 +7,7 @@ import {
   CREATE_SENSOR,
   DELETE_PLANT_SENSORS,
   DELETE_SENSOR,
+  GET_LATEST_SENSOR_DATA,
   LIST_PLANT_SENSORS,
   RETRIEVE_SENSOR,
   SAVE_SENSOR_DATA,
@@ -105,7 +106,23 @@ export class SensorService implements OnModuleInit {
     this.sensorClient.emit(DELETE_PLANT_SENSORS, { id: plantId });
   }
 
+  /**
+   * Saves sensor data.
+   * @param entry - The sensor data entry to be saved.
+   */
   saveSensorEntry(entry: SensorDataDto) {
     this.sensorDataClient.emit(SAVE_SENSOR_DATA, entry);
+  }
+
+  /**
+   * Retrieves the latest sensor data for a specific sensor.
+   * @param plantId - The ID of the plant associated with the sensor.
+   * @param sensorId - The ID of the sensor whose data is to be retrieved.
+   * @returns A promise that resolves to the latest sensor data.
+   */
+  getLatestSensorData(plantId: string, sensorId: string) {
+    return firstValueFrom(
+      this.sensorClient.send(GET_LATEST_SENSOR_DATA, { plantId, sensorId }),
+    );
   }
 }
