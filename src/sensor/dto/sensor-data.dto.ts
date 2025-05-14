@@ -20,7 +20,7 @@ export class SensorDataDto {
     type: String,
     description: 'Timestamp when the data has been taken',
   })
-  timestamp: string;
+  ts: string;
   @IsString()
   @ApiProperty({
     type: String,

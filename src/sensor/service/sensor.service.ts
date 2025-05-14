@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { CreateSensorDto } from '../dto/create-sensor.dto';
 import { UpdateSensorDto } from '../dto/update-sensor.dto';
 import { SENSORS_DATA_SERVICE, SENSORS_SERVICE } from 'src/tokens';
@@ -40,6 +40,7 @@ export class SensorService implements OnModuleInit {
   onModuleInit() {
     this.sensorClient.subscribeToResponseOf(LIST_PLANT_SENSORS);
     this.sensorClient.subscribeToResponseOf(RETRIEVE_SENSOR);
+    this.sensorClient.subscribeToResponseOf(GET_LATEST_SENSOR_DATA);
   }
 
   /**
@@ -120,12 +121,11 @@ export class SensorService implements OnModuleInit {
    * @param sensorId - The ID of the sensor whose data is to be retrieved.
    * @returns A promise that resolves to the latest sensor data.
    */
-  getLatestSensorData(plantId: string, sensorId: string) {
-    Logger.log('getLatestSensorData', plantId, sensorId);
+  async getLatestSensorData(plantId: string, sensorId: string) {
     return firstValueFrom(
       this.sensorClient.send(GET_LATEST_SENSOR_DATA, {
-        plantId: plantId,
-        sensorId: sensorId,
+        plantId,
+        sensorId,
       }),
     );
   }

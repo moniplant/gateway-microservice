@@ -16,3 +16,6 @@ Made easy with docker compose, run: `docker compose up` for running all services
 - kafka server running under: 9092
 - gateway service running under port: 3000
 - swagger UI for testing the API: `http://localhost:3000/api`
+
+#### Devlopment environment:
+`docker compose --profile dev up` to launch the services in dev mode (launches the microservice too)
