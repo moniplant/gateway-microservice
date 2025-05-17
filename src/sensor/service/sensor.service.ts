@@ -8,6 +8,7 @@ import {
   DELETE_PLANT_SENSORS,
   DELETE_SENSOR,
   GET_LATEST_SENSOR_DATA,
+  GET_SENSOR_DATA_BATCH,
   LIST_PLANT_SENSORS,
   RETRIEVE_SENSOR,
   SAVE_SENSOR_DATA,
@@ -41,6 +42,7 @@ export class SensorService implements OnModuleInit {
     this.sensorClient.subscribeToResponseOf(LIST_PLANT_SENSORS);
     this.sensorClient.subscribeToResponseOf(RETRIEVE_SENSOR);
     this.sensorClient.subscribeToResponseOf(GET_LATEST_SENSOR_DATA);
+    this.sensorClient.subscribeToResponseOf(GET_SENSOR_DATA_BATCH);
   }
 
   /**
@@ -126,6 +128,20 @@ export class SensorService implements OnModuleInit {
       this.sensorClient.send(GET_LATEST_SENSOR_DATA, {
         plantId,
         sensorId,
+      }),
+    );
+  }
+
+  async getSensorDataBatch(
+    plantId: string,
+    sensorId: string,
+    numberOfEntries: number,
+  ) {
+    return firstValueFrom(
+      this.sensorClient.send(GET_SENSOR_DATA_BATCH, {
+        plantId,
+        sensorId,
+        numberOfEntries,
       }),
     );
   }

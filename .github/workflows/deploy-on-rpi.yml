@@ -25,6 +25,14 @@ jobs:
         echo "Stopping dependent containers..."
         docker stop sensors_app_prod plants_app_prod || echo "Containers not running or already stopped."
 
+    - name: Stop and remove old gateway_app_prod container
+      run: |
+        docker rm -f gateway_app_prod || true
+
+    - name: Remove old gateway-microservice-gateway_app_prod image
+      run: |
+        docker rmi -f gateway-microservice-gateway_app_prod || true
+
     - name: Build the Docker image and run the service
       run: |
         echo "Running the service..."

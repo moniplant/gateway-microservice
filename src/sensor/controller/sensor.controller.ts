@@ -117,7 +117,7 @@ export class SensorController {
    * @param sensorId - The ID of the sensor whose data is to be retrieved.
    * @returns A promise that resolves to the latest sensor data.
    */
-  @Get('sensordata/:plantId/:sensorId')
+  @Get('lastdata/:plantId/:sensorId')
   @ApiOperation({
     summary:
       'Retrieves the latest sensor data for a specific plant and sensor.',
@@ -127,5 +127,23 @@ export class SensorController {
     @Param('sensorId') sensorId: string,
   ) {
     return this.sensorService.getLatestSensorData(plantId, sensorId);
+  }
+
+  /**
+   * Retrieves the n latest saved data for a specific plant and sensor.
+   * @param plantId - The ID of the plant whose sensor data is to be retrieved.
+   * @param sensorId - The ID of the sensor whose data is to be retrieved.
+   * @returns A promise that resolves to the sensor data.
+   */
+  @Get('sensordata/:plantId/:sensorId/:number')
+  @ApiOperation({
+    summary: 'Retrieves the latest n data.',
+  })
+  getSensorDataBatch(
+    @Param('plantId') plantId: string,
+    @Param('sensorId') sensorId: string,
+    @Param('number') number: number,
+  ) {
+    return this.sensorService.getSensorDataBatch(plantId, sensorId, number);
   }
 }

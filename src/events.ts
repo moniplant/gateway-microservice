@@ -17,6 +17,7 @@ export const RETRIEVE_SENSOR = 'sensor.retrieve';
 export const LIST_PLANT_SENSORS = 'sensors.plant.list';
 export const DELETE_PLANT_SENSORS = 'sensors.plant.delete';
 
-// SENSOR DATA API - MQTT
+// SENSOR DATA API - MQTT/Kafka
 export const SAVE_SENSOR_DATA = 'sensor.data.save';
 export const GET_LATEST_SENSOR_DATA = 'sensor.data.latest';
+export const GET_SENSOR_DATA_BATCH = 'sensor.data.batch';
