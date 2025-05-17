@@ -135,7 +135,7 @@ export class SensorService implements OnModuleInit {
   async getSensorDataBatch(
     plantId: string,
     sensorId: string,
-    numberOfEntries: number,
+    numberOfEntries: string,
   ) {
     return firstValueFrom(
       this.sensorClient.send(GET_SENSOR_DATA_BATCH, {
