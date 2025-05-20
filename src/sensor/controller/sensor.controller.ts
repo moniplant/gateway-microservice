@@ -135,19 +135,15 @@ export class SensorController {
    * @param sensorId - The ID of the sensor whose data is to be retrieved.
    * @returns A promise that resolves to the sensor data.
    */
-  @Get('sensordata/:plantId/:sensorId/:numberOfDataPoints')
+  @Get('sensordata/:plantId/:sensorId/:length')
   @ApiOperation({
     summary: 'Retrieves the latest n data.',
   })
   getSensorDataBatch(
     @Param('plantId') plantId: string,
     @Param('sensorId') sensorId: string,
-    @Param('numberOfDataPoints') numberOfDataPoints: string,
+    @Param('length') length: number,
   ) {
-    return this.sensorService.getSensorDataBatch(
-      plantId,
-      sensorId,
-      numberOfDataPoints,
-    );
+    return this.sensorService.getSensorDataBatch(plantId, sensorId, length);
   }
 }
